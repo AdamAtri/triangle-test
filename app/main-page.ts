@@ -4,4 +4,7 @@ import { HelloWorldModel } from './main-view-model'
 export function navigatingTo(args: EventData) {
   const page = <Page>args.object
   page.bindingContext = new HelloWorldModel()
+  const g = global as any;
+  g.page = page;
+  g.model = page.bindingContext;
 }

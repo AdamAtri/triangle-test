@@ -1,4 +1,8 @@
 import { Observable } from '@nativescript/core'
+import gsap from 'gsap';
+import { TriangleType } from './view/triangle/triangle';
+
+
 
 export class HelloWorldModel extends Observable {
   private _counter: number
@@ -8,7 +12,7 @@ export class HelloWorldModel extends Observable {
     super()
 
     // Initialize default values.
-    this._counter = 42
+    this._counter = 42;
     this.updateMessage()
   }
 
@@ -24,8 +28,7 @@ export class HelloWorldModel extends Observable {
   }
 
   onTap() {
-    this._counter--
-    this.updateMessage()
+    alert('tapped');
   }
 
   private updateMessage() {
@@ -34,5 +37,13 @@ export class HelloWorldModel extends Observable {
     } else {
       this.message = `${this._counter} taps left`
     }
+  }
+
+  private _triangleType:TriangleType = 'isosceles';
+  public get triangleType():TriangleType { return this._triangleType; }
+  public set triangleType(v:TriangleType) {
+    if (this._triangleType === v) return;
+    this._triangleType = v;
+    this.notifyPropertyChange('triangleType', v);
   }
 }

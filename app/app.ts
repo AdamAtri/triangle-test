@@ -6,6 +6,13 @@ purpose of the file is to pass control to the app’s first module.
 
 import { Application } from '@nativescript/core'
 
+declare module '@nativescript/core/ui/layouts/grid-layout' {
+  export interface GridLayout {
+    set rows(v:string);
+    set columns(v:string);
+  }
+}
+
 Application.run({ moduleName: 'app-root' })
 
 /*
