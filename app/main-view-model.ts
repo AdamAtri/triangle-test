@@ -4,11 +4,11 @@ import { TriangleType } from './view/triangle/triangle';
 
 export type ErrorString = 
   'invalid or incorrect number of inputs' | 
-  'inputs must be numbers' |
   'inputs must be greater than 0' | 
+  'inputs must be numbers' |
   'a + b <= c' | 
   'b + c <= a' | 
-  'c + a <= b' | 
+  'c + a <= b' |
   'unknown error' |
   null;
 
@@ -19,32 +19,25 @@ export class TriangleModel extends Observable {
     this.triangleType = this._determineTriangleType(values);
   }
 
-  public _validateSideValues(values:Array<number>):ErrorString {
+  // todo: refactor _validateSideValues to return an <ErrorString>
+  public _validateSideValues(values:Array<number>):boolean {
     if (! values || values.length !== 3)
-      return 'invalid or incorrect number of inputs';
+      return false;
     const [a, b, c] = values;
     if (typeof a != 'number' || typeof b != 'number' || typeof c != 'number')
-      return 'inputs must be numbers';
+      return false;
     if (a <= 0 || b <= 0 || c <= 0)
-      return 'inputs must be greater than 0';
+      return false;
     if ((a + b > c) && (b + c > a) && (c + a > b))
-      return null;
-    else if (a + b <= c)
-      return 'a + b <= c';
-    else if (b + c <= a)
-      return 'b + c <= a';
-    else if (c + a <= b)
-      return 'c + a <= b';
-    return 'unknown error';
+      return true;
+    return false;
   }
 
   public _determineTriangleType(values:Array<number>):TriangleType {
-    this.errorMessage = null;
-    const error = this._validateSideValues(values);
-    if (error) {
-      this.errorMessage = error;
+    // todo: create a const `error` and assign it the value returned from _validateSideValues
+    // if there is an error assign it to `errorMessage`
+    if (! this._validateSideValues(values))
       return null;
-    }
     const [a, b, c] = values;
     if (a == b && b == c) return 'equilateral';
     else if (a != b && b !== c && c != a) return 'scalene';

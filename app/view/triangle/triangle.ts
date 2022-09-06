@@ -12,7 +12,6 @@ export class Triangle extends GridLayout {
     this.addChild(this.image);
     this.addChild(this.label);
     // todo: add errorLabel
-    this.addChild(this.errorLabel);
   }
 
   private _triangleType:TriangleType;
@@ -59,19 +58,13 @@ export class Triangle extends GridLayout {
     return this._label;
   }
 
-  // todo: add error message handling
+  // todo: create a getter/setter for error
+  // that will update the text and visibility of the errorLabel
   private _error:string;
   public get error():string { return this._error; }
   public set error(v:string) {
     if (this._error == v) return;
     this._error = v;
-    if (v) {
-      this.errorLabel.text = v;
-      this.errorLabel.visibility = 'visible';
-    }
-    else {
-      this.errorLabel.visibility = 'collapse';
-    }
   }
 
   protected _errorLabel:Label;
