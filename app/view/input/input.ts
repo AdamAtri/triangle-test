@@ -3,46 +3,46 @@ import { Button, CoreTypes, Label, StackLayout, TextField } from "@nativescript/
 export class Input extends StackLayout {
   constructor() {
     super();
-    this.addChild(this.label1);
-    this.addChild(this.input1);
-    this.addChild(this.label2);
+    this.addChild(this.labelA);
+    this.addChild(this.inputA);
+    this.addChild(this.labelB);
     this.addChild(this.input2);
-    this.addChild(this.label3); 
-    this.addChild(this.input3);
+    this.addChild(this.labelC); 
+    this.addChild(this.inputC);
     this.addChild(this.button);
   }
 
-  protected _label1:Label;
-  public get label1():Label {
-    if (! this._label1) {
-      this._label1 = new Label();
-      this._label1.text = 'side 1'
-      this._label1.textAlignment = 'center'
-      this._label1.horizontalAlignment = 'center';
+  protected _labelA:Label;
+  public get labelA():Label {
+    if (! this._labelA) {
+      this._labelA = new Label();
+      this._labelA.text = 'side a'
+      this._labelA.textAlignment = 'center'
+      this._labelA.horizontalAlignment = 'center';
     }
-    return this._label1;
+    return this._labelA;
   }
 
-  protected _input1:TextField;
-  public get input1():TextField {
-    if (! this._input1) {
-      this._input1 = new TextField();
-      this._input1.keyboardType = CoreTypes.KeyboardType.number;
-      this._input1.marginBottom = 8;
-      this._input1.textAlignment = 'center'
+  protected _inputA:TextField;
+  public get inputA():TextField {
+    if (! this._inputA) {
+      this._inputA = new TextField();
+      this._inputA.keyboardType = CoreTypes.KeyboardType.number;
+      this._inputA.marginBottom = 8;
+      this._inputA.textAlignment = 'center'
     }
-    return this._input1;
+    return this._inputA;
   }
 
-  protected _label2:Label;
-  public get label2():Label {
-    if (! this._label2) {
-      this._label2 = new Label();
-      this._label2.text = 'side 2'
-      this._label2.textAlignment = 'center'
-      this._label2.horizontalAlignment = 'center';
+  protected _labelB:Label;
+  public get labelB():Label {
+    if (! this._labelB) {
+      this._labelB = new Label();
+      this._labelB.text = 'side b'
+      this._labelB.textAlignment = 'center'
+      this._labelB.horizontalAlignment = 'center';
     }
-    return this._label2;
+    return this._labelB;
   }
 
   protected _input2:TextField;
@@ -56,26 +56,26 @@ export class Input extends StackLayout {
     return this._input2;
   }
 
-  protected _label3:Label;
-  public get label3():Label {
-    if (! this._label3) {
-      this._label3 = new Label();
-      this._label3.text = 'side 3'
-      this._label3.textAlignment = 'center'
-      this._label3.horizontalAlignment = 'center';
+  protected _labelC:Label;
+  public get labelC():Label {
+    if (! this._labelC) {
+      this._labelC = new Label();
+      this._labelC.text = 'side c'
+      this._labelC.textAlignment = 'center'
+      this._labelC.horizontalAlignment = 'center';
     }
-    return this._label3;
+    return this._labelC;
   }
 
-  protected _input3:TextField;
-  public get input3():TextField {
-    if (! this._input3) {
-      this._input3 = new TextField();
-      this._input3.keyboardType = CoreTypes.KeyboardType.number;
-      this._input3.marginBottom = 8;
-      this._input3.textAlignment = 'center'
+  protected _inputC:TextField;
+  public get inputC():TextField {
+    if (! this._inputC) {
+      this._inputC = new TextField();
+      this._inputC.keyboardType = CoreTypes.KeyboardType.number;
+      this._inputC.marginBottom = 8;
+      this._inputC.textAlignment = 'center'
     }
-    return this._input3;
+    return this._inputC;
   }
 
   protected _button:Button;
@@ -90,7 +90,7 @@ export class Input extends StackLayout {
   }
 
   get values():Array<number> {
-    return [+this.input1.text, +this.input2.text, +this.input3.text];
+    return [+this.inputA.text, +this.input2.text, +this.inputC.text];
   }
 
   private _onButtonTapped():void {
