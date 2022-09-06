@@ -4,39 +4,36 @@ import { TriangleType } from './view/triangle/triangle';
 
 
 
-export class HelloWorldModel extends Observable {
-  private _counter: number
-  private _message: string
+export class TriangleModel extends Observable {
 
-  constructor() {
-    super()
-
-    // Initialize default values.
-    this._counter = 42;
-    this.updateMessage()
+  onTap = (values:Array<number>) => {
+    this.triangleType = this._determineTriangleType(values);
   }
 
-  get message(): string {
-    return this._message
+  public _validateSideValues(values:Array<number>):boolean {
+    // todo: create a function that validates the values using the Triangle Inequality Theorum
+    // (see tests)
+    if (! values || values.length !== 3)
+      return false;
+    const [a, b, c] = values;
+    if (typeof a != 'number' || typeof b != 'number' || typeof c != 'number')
+      return false;
+    if (a <= 0 || b <= 0 || c <= 0)
+      return false;
+    if ((a + b > c) && (b + c > a) && (c + a > b))
+      return true;
+    return false;
   }
 
-  set message(value: string) {
-    if (this._message !== value) {
-      this._message = value
-      this.notifyPropertyChange('message', value)
-    }
-  }
-
-  onTap() {
-    alert('tapped');
-  }
-
-  private updateMessage() {
-    if (this._counter <= 0) {
-      this.message = 'Hoorraaay! You unlocked the NativeScript clicker achievement!'
-    } else {
-      this.message = `${this._counter} taps left`
-    }
+  public _determineTriangleType(values:Array<number>):TriangleType {
+    // todo: create a function that returns the triangle type based on the values provided
+    if (! this._validateSideValues(values))
+      return null;
+    const [a, b, c] = values;
+    if (a == b && b == c) return 'equilateral';
+    else if (a != b && b !== c && c != a) return 'scalene';
+    else if (a == b || b == c || c == a) return 'isosceles';
+    else return null;
   }
 
   private _triangleType:TriangleType = 'isosceles';
