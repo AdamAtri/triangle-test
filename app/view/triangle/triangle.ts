@@ -35,7 +35,8 @@ export class Triangle extends GridLayout {
     if (! this._image) {
       this._image = new Image();
       this._image.stretch = 'aspectFill';
-      this._image.width = this._image.height = 300;
+      // @ts-ignore
+      this._image.width = '100%';
       this._image.horizontalAlignment = 'center';
     }
     return this._image;
