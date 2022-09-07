@@ -12,6 +12,15 @@ export type ErrorString =
   'unknown error' |
   null;
 
+export const ErrorMap:{[key:string]:ErrorString} = {
+  invalid: 'invalid or incorrect number of inputs',
+  numbers: 'inputs must be numbers',
+  gt0: 'inputs must be greater than 0',
+  abLTc: 'a + b <= c',
+  bcLTa: 'b + c <= a',
+  caLTb: 'c + a <= b',
+  unknown: 'unknown error'
+}
 
 export class TriangleModel extends Observable {
 
@@ -21,21 +30,21 @@ export class TriangleModel extends Observable {
 
   public _validateSideValues(values:Array<number>):ErrorString {
     if (! values || values.length !== 3)
-      return 'invalid or incorrect number of inputs';
+      return ErrorMap.invalid;
     const [a, b, c] = values;
     if (typeof a != 'number' || typeof b != 'number' || typeof c != 'number')
-      return 'inputs must be numbers';
+      return ErrorMap.numbers;
     if (a <= 0 || b <= 0 || c <= 0)
-      return 'inputs must be greater than 0';
+      return ErrorMap.gt0;
     if ((a + b > c) && (b + c > a) && (c + a > b))
       return null;
     else if (a + b <= c)
-      return 'a + b <= c';
+      return ErrorMap.abLTc;
     else if (b + c <= a)
-      return 'b + c <= a';
+      return ErrorMap.bcLTa;
     else if (c + a <= b)
-      return 'c + a <= b';
-    return 'unknown error';
+      return ErrorMap.caLTb;
+    return ErrorMap.unknown;
   }
 
   public _determineTriangleType(values:Array<number>):TriangleType {

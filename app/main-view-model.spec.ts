@@ -1,4 +1,4 @@
-import { TriangleModel } from "~/main-view-model";
+import { ErrorMap, TriangleModel } from "~/main-view-model";
 
 const validSides = [
   [1, 4, 4],
@@ -25,16 +25,20 @@ const viewModel = new TriangleModel();
 describe('MainViewModel Test', () => {
 
   describe('#_validateSideValues', () => {
-    it('should return "true" if the values supplied are valid', async () => {
+    it('should return "null" if the values supplied are valid', async () => {
       validSides.forEach(values => {
-        assert.isTrue(viewModel._validateSideValues(values));
+        assert.isNull(viewModel._validateSideValues(values));
       })
     })
-    it('should return "false" if the values are invalid', async () => {
-      invalidSides.forEach(values => {
-        // @ts-ignore
-        assert.isFalse(viewModel._validateSideValues(values));
-      })
+    it('should return a detailed message if the values are invalid', async () => {
+      const [zero1, bcLTa1, zero2, abLTc1, invalid1, invalid2, numbers1] = invalidSides as any;
+      assert.equal(viewModel._validateSideValues(zero1), ErrorMap.gt0);
+      assert.equal(viewModel._validateSideValues(bcLTa1), ErrorMap.bcLTa);
+      assert.equal(viewModel._validateSideValues(zero2), ErrorMap.gt0);
+      assert.equal(viewModel._validateSideValues(abLTc1), ErrorMap.abLTc);
+      assert.equal(viewModel._validateSideValues(invalid1), ErrorMap.invalid);
+      assert.equal(viewModel._validateSideValues(invalid2), ErrorMap.invalid);
+      assert.equal(viewModel._validateSideValues(numbers1), ErrorMap.numbers);
     })
   });
 
