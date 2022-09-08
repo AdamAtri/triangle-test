@@ -1,13 +1,12 @@
 <Page 
     xmlns="http://schemas.nativescript.org/tns.xsd" 
-    xmlns:triangle="view/triangle/triangle"
-    xmlns:input="view/input/input"
+    xmlns:views="view/index"
     navigatingTo="navigatingTo">
     <ActionBar title="VT Code Interview" icon="" />
 
     <GridLayout rows="auto, auto" columns="auto, *" class="p-20">
         <Label text="Triangle Test" class="h1 text-center" colSpan="2" marginBottom="36"/>
-        <input:Input handler="{{ onTap }}" row="1" col="0" width="80" verticalAlignment="middle"/>
-        <triangle:Triangle triangleType="{{ triangleType }}" row="1" col="1"/>        
+        <views:Input handler="{{ onTap }}" row="1" col="0" width="80" verticalAlignment="middle"/>
+        <views:Triangle triangleType="{{ triangleType }}" error="{{ errorMessage }}" row="1" col="1"/>        
     </GridLayout>
 </Page>

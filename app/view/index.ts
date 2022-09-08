@@ -1,4 +1,2 @@
-import { Input } from "./input/input";
-import { Triangle } from "./triangle/triangle";
-
-export { Input, Triangle };
+export * from "./input/input";
+export * from "./triangle/triangle";
