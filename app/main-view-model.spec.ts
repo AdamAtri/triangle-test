@@ -22,18 +22,22 @@ const invalidSides = [
 
 const viewModel = new TriangleModel();
 
+const log = (...message:any) => console.log('[Triangle Model Test]:',...message, '\n');
+
 describe('MainViewModel Test', () => {
 
   describe('#_validateSideValues', () => {
     it('should return "true" if the values supplied are valid', async () => {
       validSides.forEach(values => {
-        assert.isTrue(viewModel._validateSideValues(values));
+        log('valid sides', values);
+        assert.isTrue(viewModel._validateSideValues(values), 'failed to validate: ' + values);
       })
     })
     it('should return "false" if the values are invalid', async () => {
       invalidSides.forEach(values => {
+        log('invalid sides', values);
         // @ts-ignore
-        assert.isFalse(viewModel._validateSideValues(values));
+        assert.isFalse(viewModel._validateSideValues(values), 'did not prevent validation of invalid sides: ' + values);
       })
     })
   });
