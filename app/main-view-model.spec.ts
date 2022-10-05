@@ -7,7 +7,8 @@ const validSides = [
   [5, 3, 4],
   [8.1, 20, 15.7],
   [47, 32, 65],
-  [20, 20, 27]
+  [20, 20, 27],
+  [12, 17, 12]
 ];
 
 const invalidSides = [
@@ -44,7 +45,7 @@ describe('MainViewModel Test', () => {
 
   describe('#_determineTriangleType', () => {
     it ('should return the type of triangle to display', async () => {
-      const [isosceles1, scalene1, equilateral1, scalene2, scalene3, scalene4, isosceles2] = validSides;
+      const [isosceles1, scalene1, equilateral1, scalene2, scalene3, scalene4, isosceles2, isosceles3] = validSides;
       assert.equal(viewModel._determineTriangleType(isosceles1),'isosceles');
       assert.equal(viewModel._determineTriangleType(scalene1),'scalene');
       assert.equal(viewModel._determineTriangleType(equilateral1),'equilateral');
@@ -52,9 +53,12 @@ describe('MainViewModel Test', () => {
       assert.equal(viewModel._determineTriangleType(scalene3),'scalene');
       assert.equal(viewModel._determineTriangleType(scalene4),'scalene');
       assert.equal(viewModel._determineTriangleType(isosceles2),'isosceles');
-
-      // @ts-ignore
-      assert.isNull(viewModel._determineTriangleType(invalidSides[0]));
+      assert.equal(viewModel._determineTriangleType(isosceles3),'isosceles');
+    
+      invalidSides.forEach(invalid => {
+        // @ts-ignore
+        assert.isNull(viewModel._determineTriangleType(invalid));
+      })      
     });    
   });
 });
